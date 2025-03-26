@@ -5,9 +5,13 @@ public class CameraMovement : MonoBehaviour
     ///////////////// VARIABLES PUBLICAS ////////////////////////
     public float moveSpeed = 5f;
     public float rotationSpeed = 2f;
+    public float timeScaleIncrement = 0.1f; 
+    public float minTimeScale = 0.1f; 
+    public float maxTimeScale = 3.0f;
+
 
     ///////////////// METODO UPDATE ////////////////////////
-    // Manejo de camara con inputs
+    
     void Update()
     {
         float moveX = 0f;
@@ -15,8 +19,8 @@ public class CameraMovement : MonoBehaviour
         float moveZ = 0f;
 
 
-        // Posibles inputs del teclado
-        foreach (KeyCode key in new KeyCode[] { KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Space, KeyCode.LeftShift })
+        // Inputs del teclado
+        foreach (KeyCode key in new KeyCode[] { KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Space, KeyCode.LeftShift, KeyCode.P, KeyCode.M })
         {
             switch (key)
             {
@@ -38,10 +42,27 @@ public class CameraMovement : MonoBehaviour
                 case KeyCode.LeftShift:
                     if (Input.GetKey(key)) moveY = -1f;
                     break;
+                case KeyCode.P:
+                    if (Input.GetKey(key)) moveSpeed += 1f;
+                    break;
+                case KeyCode.M:
+                    if (Input.GetKey(key)) moveSpeed -= 1f;
+                    break;
             }
         }
+        
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Time.timeScale = Mathf.Clamp(Time.timeScale + timeScaleIncrement, minTimeScale, maxTimeScale);
+        }
 
-        // Logica de movimientoen la simulación con WASD o seguimiento de ratón
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Time.timeScale = Mathf.Clamp(Time.timeScale - timeScaleIncrement, minTimeScale, maxTimeScale);
+        }
+
+
+        // Logica de movimientoen la simulacion con WASD o seguimiento de raton
         Vector3 moveDirection = transform.right * moveX + transform.up * moveY + transform.forward * moveZ;
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
