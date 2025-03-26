@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    ///////////////// VARIABLES PUBLICAS ////////////////////////
     public float moveSpeed = 5f;
     public float rotationSpeed = 2f;
 
+    ///////////////// METODO UPDATE ////////////////////////
+    // Manejo de camara con inputs
     void Update()
     {
         float moveX = 0f;
@@ -12,7 +15,7 @@ public class CameraMovement : MonoBehaviour
         float moveZ = 0f;
 
 
-        // todo la logica de los inputs de la persona
+        // Posibles inputs del teclado
         foreach (KeyCode key in new KeyCode[] { KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Space, KeyCode.LeftShift })
         {
             switch (key)
@@ -38,18 +41,18 @@ public class CameraMovement : MonoBehaviour
             }
         }
 
-        // logica para cuando te muevas por el mundo con wasd siga a la direccion del raton
+        // Logica de movimientoen la simulación con WASD o seguimiento de ratón
         Vector3 moveDirection = transform.right * moveX + transform.up * moveY + transform.forward * moveZ;
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
         
-        // input de cuando se mantiene el click izquierdo
+        // Input click izquierdo mateniendose presionado
         if (Input.GetMouseButton(0)) 
         {
             float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
             float mouseY = -Input.GetAxis("Mouse Y") * rotationSpeed;
 
-            //hacer la rotacion donde este apuntando la camara
+            // Rotacion desde donde este apuntando la camara
             transform.Rotate(Vector3.up, mouseX, Space.World);
             transform.Rotate(Vector3.right, mouseY, Space.Self);
         }
