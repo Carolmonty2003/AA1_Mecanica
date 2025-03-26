@@ -373,8 +373,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1523148456}
+  otherBodies: []
   massSun: 1
   massPlanet: 0.000955
+  massesOtherBodies:
+  - 0.000000166
+  - 0.00000245
+  - 0.000003
+  - 0.000000323
+  - 0.000286
+  - 0.0000436
+  - 0.0000515
   initialPos: 5.2
   initialVelocity: 2.75
   gravity: 39.478
@@ -476,8 +485,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1523148456}
+  otherBodies: []
   massSun: 1
   massPlanet: 0.000000323
+  massesOtherBodies:
+  - 0.000000166
+  - 0.00000245
+  - 0.000003
+  - 0.000955
+  - 0.000286
+  - 0.0000436
+  - 0.0000515
   initialPos: 1.52
   initialVelocity: 5.06
   gravity: 39.478
@@ -499,8 +517,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1523148456}
+  otherBodies: []
   massSun: 1
   massPlanet: 0.00000245
+  massesOtherBodies:
+  - 0.000000166
+  - 0.000003
+  - 0.000000323
+  - 0.000955
+  - 0.000286
+  - 0.0000436
+  - 0.0000515
   initialPos: 0.72
   initialVelocity: 7.38
   gravity: 39.478
@@ -522,8 +549,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1523148456}
+  otherBodies: []
   massSun: 1
   massPlanet: 0.0000436
+  massesOtherBodies:
+  - 0.000000166
+  - 0.00000245
+  - 0.000003
+  - 0.000000323
+  - 0.000955
+  - 0.000286
+  - 0.0000515
   initialPos: 19.22
   initialVelocity: 1.43
   gravity: 39.478
@@ -630,8 +666,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1523148456}
+  otherBodies: []
   massSun: 1
   massPlanet: 0.0000515
+  massesOtherBodies:
+  - 0.000000166
+  - 0.00000245
+  - 0.000003
+  - 0.000000323
+  - 0.000955
+  - 0.000286
+  - 0.0000436
   initialPos: 30.05
   initialVelocity: 1.14
   gravity: 39.478
@@ -733,8 +778,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1523148456}
+  otherBodies: []
   massSun: 1
   massPlanet: 0.000003
+  massesOtherBodies:
+  - 0.000000166
+  - 0.00000245
+  - 0.000000323
+  - 0.000955
+  - 0.000286
+  - 0.0000436
+  - 0.0000515
   initialPos: 1
   initialVelocity: 6.28
   gravity: 39.478
@@ -866,7 +920,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1526814149960808, guid: 7e4bfb3c6ba1d4bc4ba31d585abdae0f, type: 3}
       propertyPath: m_Name
-      value: Jupiter (1)
+      value: 'Jupiter '
       objectReference: {fileID: 0}
     - target: {fileID: 4030326048459444, guid: 7e4bfb3c6ba1d4bc4ba31d585abdae0f, type: 3}
       propertyPath: m_RootOrder
@@ -1034,8 +1088,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1523148456}
+  otherBodies: []
   massSun: 1
   massPlanet: 0.000000166
+  massesOtherBodies:
+  - 0.00000245
+  - 0.000003
+  - 0.000000323
+  - 0.000955
+  - 0.000286
+  - 0.0000436
+  - 0.0000515
   initialPos: 0.39
   initialVelocity: 10.07
   gravity: 39.478
@@ -1222,8 +1285,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 1523148456}
+  otherBodies: []
   massSun: 1
   massPlanet: 0.000286
+  massesOtherBodies:
+  - 0.000000166
+  - 0.00000245
+  - 0.000003
+  - 0.000000323
+  - 0.000955
+  - 0.0000436
+  - 0.0000515
   initialPos: 9.58
   initialVelocity: 2.04
   gravity: 39.478
@@ -1237,7 +1309,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1647581975099426, guid: 835acc1a9ebe24c0fa3854c99346f9cd, type: 3}
       propertyPath: m_Name
-      value: Venus (1)
+      value: 'Venus '
       objectReference: {fileID: 0}
     - target: {fileID: 4024914263291546, guid: 835acc1a9ebe24c0fa3854c99346f9cd, type: 3}
       propertyPath: m_RootOrder
