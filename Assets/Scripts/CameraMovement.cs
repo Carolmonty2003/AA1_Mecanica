@@ -51,6 +51,7 @@ public class CameraMovement : MonoBehaviour
             }
         }
         
+        // Logia para aumentar o disminuir el tiempo de la simulacion
         if (Input.GetKeyDown(KeyCode.M))
         {
             Time.timeScale = Mathf.Clamp(Time.timeScale + timeScaleIncrement, minTimeScale, maxTimeScale);
