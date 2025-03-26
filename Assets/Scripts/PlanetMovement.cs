@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlanetMovement : MonoBehaviour
 {
     public Transform sun;
+    public Transform[] otherBodies; // array de planetas
     public float massSun = 1f;
     public float massPlanet;
+    public float[] massesOtherBodies; // masas de los otros planetas
 
     public float initialPos;
     public float initialVelocity;
@@ -17,7 +19,7 @@ public class PlanetMovement : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(initialPos, 0, 0);
-        initialVelocity = Mathf.Sqrt(gravity / initialPos);
+        initialVelocity = Mathf.Sqrt(gravity * massSun / initialPos);
 
         Vector3 tangentDirection = new Vector3(0, 0, 1);
 
@@ -26,14 +28,26 @@ public class PlanetMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 direction = sun.position - transform.position;
-        float distance = direction.magnitude;
-        float accelerationMagnitude = (gravity * massSun) / (distance * distance);
-        Vector3 acceleration = direction.normalized * accelerationMagnitude;
+        // Fuerza Sol
+        Vector3 directionToSun = sun.position - transform.position;
+        float distanceToSun = directionToSun.magnitude;
+        Vector3 acceleration = directionToSun.normalized * (gravity * massSun) / (distanceToSun * distanceToSun);
 
+        // Fuerzas de otros planetas
+        for (int i = 0; i < otherBodies.Length; i++)
+        {
+            if (otherBodies[i] != null && otherBodies[i] != this.transform)
+            {
+                Vector3 directionToBody = otherBodies[i].position - transform.position;
+                float distanceToBody = directionToBody.magnitude;
+                float bodyAccelerationMagnitude = (gravity * massesOtherBodies[i]) / (distanceToBody * distanceToBody);
+                acceleration += directionToBody.normalized * bodyAccelerationMagnitude;
+            }
+        }
+
+        //Verlet
         Vector3 newPos = 2 * transform.position - previosPos + acceleration * Mathf.Pow(Time.fixedDeltaTime, 2);
         previosPos = transform.position;
         transform.position = newPos;
-        
     }
 }
