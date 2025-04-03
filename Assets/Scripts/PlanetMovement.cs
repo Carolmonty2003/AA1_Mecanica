@@ -13,7 +13,8 @@ public class PlanetMovement : MonoBehaviour
 
     public float initialPos;               
     public float initialVelocity;          
-    public float gravity = 39.478f;        
+    public float gravity = 39.478f;
+    public Vector3 acceleration;
 
     private Vector3 previosPos;
     
@@ -47,7 +48,7 @@ public class PlanetMovement : MonoBehaviour
 
         // Ley de Gravitacion Universal: F = GMm/r²
         // Como a = F/m, la aceleracion es GM/r² en direccion al Sol
-        Vector3 acceleration = directionToSun.normalized * (gravity * massSun) / (distanceToSun * distanceToSun);
+        acceleration = directionToSun.normalized * (gravity * massSun) / (distanceToSun * distanceToSun);
 
         // 2. SUMAR ACELERACIONES DE OTROS CUERPOS CELESTES
         for (int i = 0; i < otherBodies.Length; i++)
