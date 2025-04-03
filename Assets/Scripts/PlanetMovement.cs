@@ -5,18 +5,19 @@ using UnityEngine;
 public class PlanetMovement : MonoBehaviour
 {
     ////////////////////  VARIABLES PUBLICAS  //////////////////////////
-    public Transform sun;                  
+    public Transform sun;
     public Transform[] otherBodies;        // Array de otros cuerpos (planetas)
     public float massSun = 1f;             // Masa del Sol (normalizada, usualmente 1 para el Sol)
-    public float massPlanet;              
+    public float massPlanet;
     public float[] massesOtherBodies;      // Masas correspondientes a los otros cuerpos en otherBodies (planetas)
 
-    public float initialPos;               
-    public float initialVelocity;          
-    public float gravity = 39.478f;        
+    public float initialPos;
+    public float initialVelocity;
+    public float gravity = 39.478f;
 
     private Vector3 previosPos;
-    
+    private List<Vector3> orbitPositions = new List<Vector3>(); // Almacena posiciones para dibujar órbita
+    private const int maxOrbitPoints = 1000; // Máximo de puntos para dibujar la órbita
 
     ////////////////////  METODO START  //////////////////////////
     // Inicializa la posicion y velocidad del planeta
@@ -35,6 +36,10 @@ public class PlanetMovement : MonoBehaviour
 
         // Preparamos la posicion previa para Verlet:
         previosPos = transform.position - tangentDirection * initialVelocity * Time.fixedDeltaTime;
+
+        // Inicializamos la lista de posiciones de órbita
+        orbitPositions.Clear();
+        orbitPositions.Add(transform.position);
     }
 
     ////////////////////  METODO FIXEDUPDATE  //////////////////////////
@@ -72,5 +77,27 @@ public class PlanetMovement : MonoBehaviour
         // Actualizamos posicion
         previosPos = transform.position;
         transform.position = newPos;
+
+        // Añadimos la nueva posición al historial de órbita
+        orbitPositions.Add(newPos);
+
+        // Limitar el número de puntos almacenados para evitar problemas de memoria
+        if (orbitPositions.Count > maxOrbitPoints)
+        {
+            orbitPositions.RemoveAt(0);
+        }
+    }
+
+    ////////////////////  METODO UPDATE  //////////////////////////
+    // Dibuja la órbita en cada frame
+    void Update()
+    {
+        if (orbitPositions.Count < 2) return;
+
+        // Dibujar líneas entre todos los puntos de la órbita
+        for (int i = 1; i < orbitPositions.Count; i++)
+        {
+            Debug.DrawLine(orbitPositions[i - 1], orbitPositions[i], Color.white);
+        }
     }
 }
